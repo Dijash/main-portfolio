@@ -5,7 +5,7 @@ import {
   ChatBubbleLeftRightIcon,
 } from "@heroicons/react/24/outline";
 import { useRouter } from "next/navigation";
-
+import particlesBackground from "@/app/Components/particlesBackground";
 const navItems = [
   {
     label: "Projects",
@@ -29,6 +29,7 @@ export default function Page() {
 
   return (
     <div className="scroll-smooth">
+      <particlesBackground />
       {/* HERO SECTION */}
       <div className="min-h-screen bg-gradient-to-br from-[#0f0c29] via-[#302b63] to-[#24243e] flex flex-col items-center justify-center text-white relative overflow-hidden px-4">
         {/* Icon Navigation */}
