@@ -1,5 +1,6 @@
 import React from 'react'
-import Main from '@/app/Pages/main/main'
+import Main from '@/app/Pages/main/page'
+
 const page = () => {
   return (
     <div>
