@@ -1,20 +1,17 @@
-const config = {
-  content: ["./src/**/*.{ts,tsx,js,jsx}"],
+module.exports = {
   theme: {
     extend: {
-      keyframes: {
-        fadeUp: {
-          "0%": { opacity: "0", transform: "translateY(40px)" },
-          "100%": { opacity: "1", transform: "translateY(0px)" },
-        },
-      },
       animation: {
-        fadeUp: "fadeUp 1s ease-out forwards",
-        fadeUpDelay: "fadeUp 1.5s ease-out forwards",
+        "fade-in": "fadeIn 1s ease-in-out forwards",
+        "fade-in-slow": "fadeIn 2s ease-in-out forwards",
+      },
+      keyframes: {
+        fadeIn: {
+          "0%": { opacity: 0, transform: "translateY(20px)" },
+          "100%": { opacity: 1, transform: "translateY(0)" },
+        },
       },
     },
   },
   plugins: [],
 };
-
-export default config;

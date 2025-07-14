@@ -5,48 +5,53 @@ import {
   ChatBubbleLeftRightIcon,
 } from "@heroicons/react/24/outline";
 import { useRouter } from "next/navigation";
-import ParticlesBackground from "@/app/Components/ParticlesBackground";
-
+import { useEffect, useState } from "react";
 
 const navItems = [
   {
     label: "Projects",
-    icon: <CodeBracketIcon className="h-6 w-6" />,
+    icon: <CodeBracketIcon className="h-6 w-6 text-green-400" />,
     target: "/Pages/projects",
   },
   {
     label: "About",
-    icon: <UserIcon className="h-6 w-6" />,
+    icon: <UserIcon className="h-6 w-6 text-green-400" />,
     target: "/Pages/about",
   },
   {
     label: "Contact",
-    icon: <ChatBubbleLeftRightIcon className="h-6 w-6" />,
+    icon: <ChatBubbleLeftRightIcon className="h-6 w-6 text-green-400" />,
     target: "/Pages/contact",
   },
 ];
 
-export default function Page() {
+export default function LandingPage() {
   const router = useRouter();
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   return (
-    <div className="scroll-smooth relative">
-      <ParticlesBackground />
-      <div className="absolute inset-0 bg-black/40 z-[1]" />{" "}
-      {/* Optional overlay */}
-      <div className="min-h-screen relative z-10 flex flex-col items-center justify-center text-white px-4">
+    <div className="relative min-h-screen bg-black text-green-400 font-mono scroll-smooth overflow-hidden">
+      <div
+        className={`relative z-10 flex flex-col items-center justify-center min-h-screen px-4 text-center transition-opacity duration-1000 ${
+          isMounted ? "opacity-100" : "opacity-0"
+        }`}
+      >
         {/* Icon Navigation */}
-        <div className="flex space-x-6 mb-10">
+        <div className="flex space-x-6 mb-10 animate-fade-in">
           {navItems.map((item, index) => (
             <button
               key={index}
               onClick={() => router.push(item.target)}
               className="group relative"
             >
-              <div className="bg-white/10 backdrop-blur-md p-4 rounded-full hover:bg-white/20 transition duration-300 cursor-pointer">
+              <div className="bg-green-400/10 border border-green-400/20 p-4 rounded-full hover:bg-green-400/20 hover:shadow-[0_0_15px_#22c55e] transition duration-300 cursor-pointer">
                 {item.icon}
               </div>
-              <span className="absolute bottom-[-2.2rem] left-1/2 -translate-x-1/2 text-xs bg-black/70 text-white px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none">
+              <span className="absolute bottom-[-2.2rem] left-1/2 -translate-x-1/2 text-xs bg-green-800 text-green-200 px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none">
                 {item.label}
               </span>
             </button>
@@ -54,25 +59,29 @@ export default function Page() {
         </div>
 
         {/* Heading */}
-        <h1 className="text-4xl md:text-5xl font-bold text-center">
-          Welcome To My <br />
-          <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-blue-500 text-transparent bg-clip-text">
-            Portfolio Website
-          </span>
+        <h1 className="text-4xl md:text-5xl font-bold text-green-300 drop-shadow-md animate-fade-in">
+          Welcome to the
+          <br />
+          <span className="text-green-500 neon-text">Matrix Portfolio</span>
         </h1>
 
-        {/* Redirect Button */}
+        {/* Explore Button */}
         <button
-          onClick={() => router.push("/Pages/main")}
-          className="mt-8 px-6 py-3 bg-white/10 backdrop-blur-md rounded-full hover:bg-white/20 transition duration-300"
+          onClick={() => router.push("/Pages/landingPage")}
+          className="mt-8 px-6 py-3 bg-green-400/10 border border-green-400/30 rounded-full hover:bg-green-400/20 hover:shadow-[0_0_20px_#22c55e] transition duration-300 animate-fade-in cursor-crosshair"
         >
-          Explore More!
+          Explore More !
         </button>
 
         {/* Footer */}
-        <p className="absolute bottom-8 text-sm text-white/40 blur-[0.3px]">
-          made with ❤️ by Dijash
+        <p className="absolute bottom-8 text-sm text-green-700 animate-fade-in-slow">
+          made with <span className="text-green-500">❤️</span> by Dijash
         </p>
+      </div>
+
+      {/* Optional flickering background text */}
+      <div className="absolute inset-0 z-0 pointer-events-none select-none opacity-10 text-green-700 text-xs leading-snug p-10 whitespace-pre-wrap overflow-hidden">
+        {Array(100).fill("0101010011010101100011101010001110\n").join("")}
       </div>
     </div>
   );
